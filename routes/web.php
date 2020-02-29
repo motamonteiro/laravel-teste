@@ -1,6 +1,8 @@
 <?php
 
 
+use App\Enums\PermissionEnum;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -11,7 +13,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::middleware(['perm:'.\App\Enums\PermissionEnum::USER['value']])->group(function () {
+    Route::middleware(['perm:'. PermissionEnum::USER['value']])->group(function () {
 
         Route::get('/usuarios', 'UserController@index')->name('users.index');
         Route::get('/usuarios/{usuario}', 'UserController@show')->name('users.show');
@@ -22,19 +24,19 @@ Route::middleware(['auth'])->group(function () {
 
     });
 
-    Route::middleware(['perm:'.\App\Enums\PermissionEnum::PRODUCT['value']])->group(function () {
+    Route::middleware(['perm:'. PermissionEnum::PRODUCT['value']])->group(function () {
 
         Route::get('/produtos', 'ProductController@index')->name('products.index');
 
     });
 
-    Route::middleware(['perm:'.\App\Enums\PermissionEnum::CATEGORY['value']])->group(function () {
+    Route::middleware(['perm:'. PermissionEnum::CATEGORY['value']])->group(function () {
 
         Route::get('/categorias', 'ProductController@index')->name('categories.index'); /** todo criar CategoryController */
 
     });
 
-    Route::middleware(['perm:'.\App\Enums\PermissionEnum::CATEGORY['value']])->group(function () {
+    Route::middleware(['perm:'. PermissionEnum::CATEGORY['value']])->group(function () {
 
         Route::get('/marcas', 'ProductController@index')->name('brands.index'); /** todo criar BrandController */
 

@@ -9,7 +9,7 @@
                         <a href="{{ route('users.index') }}" class="btn btn-primary">Usuários</a>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card mt-3">
                     <div class="card-header">Editar Usuário</div>
 
                     <div class="card-body">
