@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Usuários</div>
+                    <div class="card-header">{{ __('Users') }}</div>
 
                     <div class="card-body">
 
@@ -14,12 +14,12 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>Nome</th>
-                                <th>E-mail</th>
-                                <th>Tipo</th>
-                                <th>Criado em</th>
-                                <th>Atualizado em</th>
-                                <th>Ação</th>
+                                <th>{{ __('Name') }}</th>
+                                <th>{{ __('Mail') }}</th>
+                                <th>{{ __('Role') }}</th>
+                                <th>{{ __('Created at') }}</th>
+                                <th>{{ __('Updated at') }}</th>
+                                <th>{{ __('Action') }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -27,13 +27,13 @@
                                 <tr>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
-                                    <td>{{ $user->role }}</td>
+                                    <td>{{ __($user->role) }}</td>
                                     <td>{{ $user->created_at->format('d/m/Y H:i:s') }}</td>
                                     <td>{{ $user->updated_at->format('d/m/Y H:i:s') }}</td>
                                     <td>
-                                        <a href="{{ route('users.show', ['user' => $user->id]) }}" class="card-link">Detalhar</a>
-                                        <a href="{{ route('users.edit', ['user' => $user->id]) }}" class="card-link">Editar</a>
-                                        <a href="#" class="card-link">Excluir</a>
+                                        <a href="{{ route('users.show', ['user' => $user->id]) }}" class="card-link">{{ __('Detail') }}</a>
+                                        <a href="{{ route('users.edit', ['user' => $user->id]) }}" class="card-link">{{ __('Edit') }}</a>
+                                        @if(!$user->is_admin)<a href="#" class="card-link">{{ __('Delete') }}@endif</a>
                                     </td>
                                 </tr>
                             @endforeach

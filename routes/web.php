@@ -12,6 +12,8 @@ Auth::routes();
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/meus-dados', 'ProfileController@show')->name('profile.show');
+    Route::get('/meus-dados/editar', 'ProfileController@edit')->name('profile.edit');
 
     Route::middleware(['perm:'. PermissionEnum::USER['value']])->group(function () {
 

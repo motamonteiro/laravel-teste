@@ -1,6 +1,7 @@
 {
   "Login": "Login",
-  "Logout":"Sair do Sistema",
+  "Logout":"Sair do sistema",
+  "Profile":"Meus dados",
   "E-Mail Address": "Endereço de email",
   "Password": "Senha",
   "Remember Me": "Manter conectado",
@@ -9,5 +10,29 @@
   "Name":"Nome",
   "Confirm Password":"Confirmar Senha",
   "Dashboard":"Painel",
-  "Home":"Início"
+  "Home":"Início",
+
+  "Hello":"Olá",
+  "You are the system admin": "Você é o administrador do sistema.",
+
+  "Administrator":"Administrador",
+  "Default user":"Usuário comum",
+
+  "Manage users": "Manter usuários",
+  "Manage products": "Manter produtos",
+  "Manage categories": "Manter categorias",
+  "Manage brands": "Manter marcas",
+
+  "Users": "Usuários",
+  "Mail": "E-mail",
+  "Role": "Tipo",
+  "Created at": "Criado em",
+  "Updated at": "Atualizado em",
+  "Action": "Ação",
+
+  "Detail": "Detalhar",
+  "Edit": "Editar",
+  "Delete": "Excluir",
+
+  "Users Detail":"Detalhes do usuário"
 }

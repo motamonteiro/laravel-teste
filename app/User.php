@@ -29,7 +29,7 @@ class User extends Authenticatable
 
     public function getRoleAttribute()
     {
-        return ($this->is_admin) ? 'Administrador' : 'Usuário Comum';
+        return ($this->is_admin) ? 'Administrator' : 'Default user';
     }
 
 }
