@@ -17,7 +17,6 @@
                                 <th>{{ __('Name') }}</th>
                                 <th>{{ __('Mail') }}</th>
                                 <th>{{ __('Role') }}</th>
-                                <th>{{ __('Created at') }}</th>
                                 <th>{{ __('Updated at') }}</th>
                                 <th>{{ __('Action') }}</th>
                             </tr>
@@ -28,12 +27,14 @@
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ __($user->role) }}</td>
-                                    <td>{{ $user->created_at->format('d/m/Y H:i:s') }}</td>
                                     <td>{{ $user->updated_at->format('d/m/Y H:i:s') }}</td>
                                     <td>
                                         <a href="{{ route('users.show', ['user' => $user->id]) }}" class="card-link">{{ __('Detail') }}</a>
                                         <a href="{{ route('users.edit', ['user' => $user->id]) }}" class="card-link">{{ __('Edit') }}</a>
-                                        @if(!$user->is_admin)<a href="#" class="card-link">{{ __('Delete') }}@endif</a>
+                                        @if(!$user->is_admin)
+                                            <a href="{{ route('users.delete', ['user' => $user->id]) }}" class="card-link">{{ __('Delete') }}</a>
+                                            <a href="{{ route('user-permissions.edit', ['user' => $user->id]) }}" class="card-link">{{ __('Permissions') }}</a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

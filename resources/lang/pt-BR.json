@@ -23,16 +23,65 @@
   "Manage categories": "Manter categorias",
   "Manage brands": "Manter marcas",
 
-  "Users": "Usuários",
   "Mail": "E-mail",
   "Role": "Tipo",
   "Created at": "Criado em",
   "Updated at": "Atualizado em",
+  "Deleted at": "Excluído em",
   "Action": "Ação",
 
+  "Users": "Usuários",
+  "User": "Usuário",
+  "Users detail":"Detalhes do usuário",
+  "User not found" : "Usuário não encontrado",
+  "User successfully created": "Usuário criado com sucesso",
+  "User successfully updated": "Usuário editado com sucesso",
+  "User successfully deleted": "Usuário excluído com sucesso",
+
+  "Permissions": "Permissões",
+  "Permission": "Permissão",
+  "Permissions detail":"Detalhes da permissão",
+  "Permission not found" : "Permissão não encontrada",
+  "Permission successfully created": "Permissão criada com sucesso",
+  "Permission successfully updated": "Permissão editada com sucesso",
+  "Permission successfully deleted": "Permissão excluída com sucesso",
+  "Permission Denied": "Permissão Negada",
+
+  "User Permissions": "Permissões de Usuário",
+  "User Permissions successfully updated": "Permissões de Usuário editadas com sucesso",
+
+  "Brands": "Marcas",
+  "Brand": "Marca",
+  "Brands detail":"Detalhes da marca",
+  "Brand not found" : "Marca não encontrada",
+  "Brand successfully created": "Marca criada com sucesso",
+  "Brand successfully updated": "Marca editada com sucesso",
+  "Brand successfully deleted": "Marca excluída com sucesso",
+
+  "Categories": "Categorias",
+  "Category": "Categoria",
+  "Categories detail":"Detalhes da categoria",
+  "Category not found" : "Categoria não encontrada",
+  "Category successfully created": "Categoria criada com sucesso",
+  "Category successfully updated": "Categoria editada com sucesso",
+  "Category successfully deleted": "Categoria excluída com sucesso",
+
+  "Products": "Produtos",
+  "Product": "Produto",
+  "Products detail":"Detalhes do produto",
+  "Product not found" : "Produto não encontrado",
+  "Product successfully created": "Produto criado com sucesso",
+  "Product successfully updated": "Produto editado com sucesso",
+  "Product successfully deleted": "Produto excluído com sucesso",
+
+  "Create": "Criar",
+  "New": "Novo",
   "Detail": "Detalhar",
   "Edit": "Editar",
   "Delete": "Excluir",
-
-  "Users Detail":"Detalhes do usuário"
+  "Back": "Voltar",
+  "Cancel": "Cancelar",
+  "Choose": "Escolher",
+  "Change": "Mudar",
+  "Delete my account": "Excluir minha conta"
 }

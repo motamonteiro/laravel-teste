@@ -33,4 +33,14 @@ class UserPermissions extends Model
         return collect($permissions);
     }
 
+    public function getUserPermissionsId($user_id)
+    {
+        $idPermissions = [];
+        $userPermissions = $this->with('permission')->where('user_id', $user_id)->get();
+        foreach ($userPermissions as $userPermission) {
+            array_push($idPermissions, $userPermission->permission->id);
+        }
+        return $idPermissions;
+    }
+
 }

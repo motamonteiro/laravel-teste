@@ -2,10 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
+    /**
+     * @var User
+     */
+    private $user;
+
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
+
     /**
      * Display the logged user.
      *
@@ -13,10 +24,12 @@ class ProfileController extends Controller
      */
     public function show()
     {
-        if (!app()['auth']->user()) {
-            return redirect()->route('login')->with(['type'=> 'danger', 'message'=> 'Perfil não encontrado ao tentar detalhar. Faça o login novamente.']);
+        $this->user = app()['auth']->user();
+
+        if (!$this->user) {
+            return redirect()->route('login')->with(['type'=> 'danger', 'message'=> __('User not found')]);
         }
-        return view('profile.show', ['user' => app()['auth']->user()]);
+        return view('profile.show', ['user' => $this->user]);
     }
 
     /**
@@ -26,10 +39,12 @@ class ProfileController extends Controller
      */
     public function edit()
     {
-        if (!app()['auth']->user()) {
-            return redirect()->route('login')->with(['type'=> 'danger', 'message'=> 'Perfil não encontrado ao tentar editar. Faça o login novamente.']);
+        $this->user = app()['auth']->user();
+
+        if (!$this->user) {
+            return redirect()->route('login')->with(['type'=> 'danger', 'message'=> __('User not found')]);
         }
-        return view('profile.edit', ['user' => app()['auth']->user()]);
+        return view('profile.edit', ['user' => $this->user]);
     }
 
     /**
@@ -40,16 +55,46 @@ class ProfileController extends Controller
      */
     public function update(Request $request)
     {
-        //todo
+        $this->user = app()['auth']->user();
+
+        if (!$this->user) {
+            return redirect()->route('login')->with(['type'=> 'danger', 'message'=> __('User not found')]);
+        }
+
+        $validatedData = $request->validate([
+            'name'  => 'required|string',
+            'email' => 'required|email',
+            'password' => 'nullable|confirmed|min:6',
+        ]);
+
+        if ($validatedData['password'] == '') {
+            unset($validatedData['password']);
+        } else {
+            $validatedData['password'] = bcrypt($validatedData['password']);
+        }
+
+        $this->user->update($validatedData);
+
+        return redirect()->route('profile.show')->with(['type'=> 'success', 'message'=> __('User successfully updated')]);
     }
 
     /**
      * Remove the logged user from storage.
      *
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy()
     {
-        //todo
+        $this->user = app()['auth']->user();
+
+        if (!$this->user) {
+            return redirect()->route('login')->with(['type'=> 'danger', 'message'=> __('User not found')]);
+        }
+
+        $name = $this->user->name;
+        $this->user->delete($this->user->id);
+
+        return redirect()->route('login')->with(['type'=> 'danger', 'message'=> __('User successfully deleted'). ': '. $name]);
     }
 }

@@ -24,7 +24,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = $this->user->paginate(5);
+        $users = $this->user->orderBy('name', 'asc')->paginate(5);
         return view('users.index', compact('users'));
     }
 
@@ -39,7 +39,7 @@ class UserController extends Controller
         $this->user = $this->user->find($id);
 
         if (!$this->user) {
-            return redirect()->route('users.index')->with(['type'=> 'danger', 'message'=> 'Usuário não encontrado ao tentar detalhar.']);
+            return redirect()->route('users.index')->with(['type'=> 'danger', 'message'=> __('User not found')]);
         }
 
         return view('users.show', ['user' => $this->user]);
@@ -56,7 +56,7 @@ class UserController extends Controller
         $this->user = $this->user->find($id);
 
         if (!$this->user) {
-            return redirect()->route('users.index')->with(['type'=> 'danger', 'message'=> 'Usuário não encontrado ao tentar editar.']);
+            return redirect()->route('users.index')->with(['type'=> 'danger', 'message'=> __('User not found')]);
         }
 
         return view('users.edit', ['user' => $this->user]);
@@ -71,6 +71,64 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request->all());
+        $this->user = $this->user->find($id);
+
+        if (!$this->user) {
+            return redirect()->route('users.index')->with(['type'=> 'danger', 'message'=> __('User not found')]);
+        }
+
+        $validatedData = $request->validate([
+            'name'  => 'required|string',
+            'email' => 'required|email',
+            'password' => 'nullable|confirmed|min:6',
+        ]);
+
+        if ($validatedData['password'] == '') {
+            unset($validatedData['password']);
+        } else {
+            $validatedData['password'] = bcrypt($validatedData['password']);
+        }
+
+        $this->user->update($validatedData);
+
+        return redirect()->route('users.index')->with(['type'=> 'success', 'message'=> __('User successfully updated')]);
+    }
+
+    /**
+     * Show the form for deleting the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function delete($id)
+    {
+        $this->user = $this->user->find($id);
+
+        if (!$this->user) {
+            return redirect()->route('users.index')->with(['type'=> 'danger', 'message'=> __('User not found')]);
+        }
+
+        return view('users.delete', ['user' => $this->user]);
+    }
+
+    /**
+     * Destroy the specified resource in storage.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     * @throws \Exception
+     */
+    public function destroy($id)
+    {
+        $this->user = $this->user->find($id);
+
+        if (!$this->user) {
+            return redirect()->route('users.index')->with(['type'=> 'danger', 'message'=> __('User not found')]);
+        }
+
+        $name = $this->user->name;
+        $this->user->delete($id);
+
+        return redirect()->route('users.index')->with(['type'=> 'danger', 'message'=> __('User successfully deleted'). ': '. $name]);
     }
 }
